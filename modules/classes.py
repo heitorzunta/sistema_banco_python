@@ -27,9 +27,8 @@ class Cliente():
         self.endereco = endereco
 
 
-##################
+################
 endereco = ('Rua Bangu', "121", "791121-210", 'casa' )
 cliente1 = Cliente('Heitor Batistela Zunta', '26/11/1983', '996828421-15', endereco)
-
 
 print(cliente1.endereco)
