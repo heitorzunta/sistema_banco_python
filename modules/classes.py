@@ -19,20 +19,17 @@ class Endereco():
 
 # Classe Cliente:  cliente que é representado através de seu nome, endereço, data nascimento, cpf e tipo de cliente.
 class Cliente():
-    def __init__(self, nome, data_nascimento, cpf, tipo_cliente = 'Normal'):
+    def __init__(self, nome, data_nascimento, cpf, endereco, tipo_cliente = 'Normal'):
         self._nome = nome
         self._data_nascimento = data_nascimento
         self._cpf = cpf
         self.tipo_cliente = tipo_cliente
-        self.endereco = []
+        self.endereco = endereco
 
-    def addEndereco(self, rua, cep, numero, complemento):
-        self.endereco.append(Endereco(rua, cep, numero, complemento))
 
 ##################
+endereco = ('Rua Bangu', "121", "791121-210", 'casa' )
+cliente1 = Cliente('Heitor Batistela Zunta', '26/11/1983', '996828421-15', endereco)
 
-cliente1 = Cliente('Heitor Batistela Zunta', '26/11/1983', '996828421-15')
-cliente1.addEndereco('Rua Bangu', "121", "791121-210", 'casa' )
 
-for endereco in cliente1.endereco:
-    print(endereco)
+print(cliente1.endereco)
