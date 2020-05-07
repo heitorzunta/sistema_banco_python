@@ -8,46 +8,47 @@ class Cpf():
     def __init__(self):
         pass
 
+    @classmethod
+    def validar_digito(self, stringTeste, stringDigito):
+        soma = 0
+        i = len(stringTeste) + 1
+        for digito in stringTeste:
+            soma += int(digito) * i
+            i -= 1
+        if (soma * 10) % 11 == int(stringDigito):
+            return True
+        else:
+            return False
+    @classmethod
     def validar_cpf(self, cpf):
         validar_1 = False
         validar_2 = False
-        soma = 0
 
-        #remover . e - do cpf
+        # remover . e - do cpf
         if not cpf.isdigit():
             cpf = cpf.replace('.', '', len(cpf))
             cpf = cpf.replace('-', '', len(cpf))
 
-        #verifica quantidade de digito
+        # verifica quantidade de digito
         if len(cpf) != 11:
             raise ValueError
 
         parte1 = cpf[:9]
         parte2 = cpf[:10]
 
-        #validacao da parte 1
-        for digito in parte1:
-            i = len(parte1) + 1
-            soma += int(digito) * i
-            i -= 1
+        # validacao da parte 1
+        validar_1 = self.validar_digito(parte1, cpf[9])
 
-        if (soma * 10) % 11 == cpf[9]:
-            validar_1 = True
-
-        #validacao da parte 2
-
-        for digito in parte2:
-            i = len(parte1) + 1
-            soma += int(digito) * i
-            i -= 1
-
-        if (soma * 10) % 11 == cpf[10]:
-            validar_2 = True
+        # validacao da parte 2
+        validar_2 = self.validar_digito(parte2, cpf[10])
 
         if validar_1 and validar_2:
             return cpf
         else:
-            return 0
+            raise ValueError
+
+
+
 #classe de Armazenamento e Validação da Data
 class Data():
     def __init__(self, data):
@@ -82,11 +83,11 @@ class Cliente():
     def __init__(self, nome, data_nascimento, cpf, endereco, tipo_cliente = 'Normal'):
         self._nome = nome
         self._data_nascimento = data_nascimento
-        self._cpf = cpf
+        self._cpf = Cpf.validar_cpf(cpf)
         self.endereco = endereco
         self.tipo_cliente = tipo_cliente
 
-################
+################ TESTE ###################################################
 endereco = ('Rua Bangu', "121", "791121-210", 'casa' )
 data_nascimento = Data('26/11/1983')
 
@@ -95,11 +96,6 @@ cliente1 = Cliente('Heitor Batistela Zunta', data_nascimento, '996828421-15', en
 print(cliente1.endereco)
 print('------------------------')
 
-print(cliente1._data_nascimento)
+print(cliente1._cpf)
 
-
-cpf = Cpf()
-
-valor = cpf.validar_cpf('996.828.421-15')
-print(valor)
 
