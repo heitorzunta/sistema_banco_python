@@ -8,5 +8,12 @@ class Cliente():
         self.endereco = endereco
         self.tipo_cliente = tipo_cliente
 
+    def __str__(self):
+         saida = 'Cliente: ' + self._nome + '\n' + 'CPF: ' + self._cpf + '\n' + 'Tipo: ' + self.tipo_cliente
+         return saida
+
+
+
+
 
 
