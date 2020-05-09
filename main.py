@@ -24,33 +24,39 @@ nome2 = 'Ana Lucia Souza'.upper()
 
 cliente1 = Cliente(nome1, data_nascimento, cpf, endereco)
 cliente2 = Cliente(nome2, data_nascimento, cpf, endereco, 'Especial')
-
-
-## Teste Clientes
-
 agencia1 = Agencia(endereco, '0001')
-conta1 = ContaCorrente(agencia1, cliente1)
-conta2 = Conta(agencia1, cliente2)
-#print(conta1)
-#print('novoooooo')
-#print(conta2)
 
-#conta1.deposita(100.0)
-#print(conta1)
-#conta1.desconto_taxa_anual()
-#print(conta1)
-
-print('TESTE CONTA FACIL')
-
+## Teste Contas
+conta_corrente = ContaCorrente(agencia1, cliente1)
+conta = Conta(agencia1, cliente2)
 conta_facil = ContaFacil(cliente1)
-print(conta_facil.deposita(5000))
-print(conta_facil.deposita(1))
-print(conta_facil.taxa_anual_conta())
-print(conta_facil)
-
-print('TESTE CONTA POUPANCA')
 conta_poupanca = Poupanca(agencia1, cliente1)
+
+# Teste conta corrente
+conta_corrente.deposita(1000)
+#conta_corrente.tranferencia(conta_facil, 100)
+#print(conta_corrente)
+# Teste conta facil
+#conta_facil.deposita(1000)
+#conta_facil.tranferencia(conta_corrente, 100)
+#conta_facil.tranferencia(conta_corrente, 500)
+#conta_facil.sacar(10)
+#print(conta_facil)
+
+# Teste  Conta Poupanca
 conta_poupanca.deposita(100)
-conta_poupanca.taxa_anual_conta()
-print(conta_poupanca)
+
+
+
+############ metodo de saque para a classe main ######################
+
+#def saque(conta, valor):
+#    if isinstance(conta, Conta) and conta.sacar(valor):
+#        print('saque efetuado com sucesso!')
+#    else:
+#        print('Ocorreu um erro em seu saque!')
+# saque(conta_corrente, 100)
+
+
+
 
